@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pdf-ingestion"
+version = "1.0.0"
+description = "Extract structured data from invoice PDFs using IBM Docling with pypdf fallback"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+
+dependencies = [
+    "pypdf>=3.0",
+    "pydantic>=2.0",
+]
+
+[project.optional-dependencies]
+docling = [
+    "docling>=1.0",
+]
+vlm = [
+    "httpx>=0.24",
+    "anthropic>=0.25",
+]
+ollama = [
+    "httpx>=0.24",
+]
+test = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+    "reportlab>=4.0",
+    "httpx>=0.24",
+]
+all = [
+    "docling>=1.0",
+    "httpx>=0.24",
+    "anthropic>=0.25",
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+    "reportlab>=4.0",
+]
+
+[tool.setuptools.packages.find]
+include = ["pdf_ingestion*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
